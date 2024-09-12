@@ -28,7 +28,7 @@ describe("Starknet Commit", function () {
       args: ["--seed", "42", "--lite-mode", "--host", "127.0.0.1", "--port", "5050"],
     };
     console.log("Spawning devnet...");
-    starknetDevnet = await StarknetDevnet.spawnInstalled(devnetConfig); // TODO: should be a new rather than spawninstalled
+    starknetDevnet = await StarknetDevnet.spawnVersion('latest', devnetConfig); // TODO: should be a new rather than spawninstalled
     starknetDevnetProvider = new StarknetDevnetProvider();
     console.log("Devnet spawned!");
 
