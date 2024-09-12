@@ -1,6 +1,12 @@
 # Run
 
 First run `yarn install`
+Then build the cairo contracts:
+```
+cd starknet
+scarb build
+```
+
 On a second monitor, run an L1 node on `127.0.0.1:8545`
 
 Then, run the test: 
