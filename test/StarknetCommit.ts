@@ -13,7 +13,6 @@ describe("Starknet Commit", function () {
   let starknetDevnetProvider: StarknetDevnetProvider;
   let mockMessagingContractAddress: string;
   let starknetCommit: EthContract;
-  let authenticator: StarknetContract;
   let starknetAccount: StarknetAccount;
   let provider: StarknetRpcProvider;
 
@@ -50,9 +49,8 @@ describe("Starknet Commit", function () {
 
     console.log("Deploying Authenticator...");
     const { sierraCode: auth_sierra, casmCode: auth_casm } = await getCompiledCode('ex_Authenticator');
-    // const auth_calldata = CallData.compile({ starknet_commit_address: await starknetCommit.getAddress() });
     const auth_response = await starknetAccount.declareAndDeploy({ contract: auth_sierra, casm: auth_casm });
-    authenticator = new StarknetContract(auth_sierra.abi, auth_response.deploy.contract_address, provider);
+    let authenticator = new StarknetContract(auth_sierra.abi, auth_response.deploy.contract_address, provider);
     console.log("Authenticator deployed: ", authenticator.address);
 
     authenticator.connect(starknetAccount);
@@ -78,7 +76,7 @@ describe("Starknet Commit", function () {
     const { sierraCode: auth_sierra, casmCode: auth_casm } = await getCompiledCode('ex_Authenticator');
     // const auth_calldata = CallData.compile({ starknet_commit_address: await starknetCommit.getAddress() });
     const auth_response = await starknetAccount.declareAndDeploy({ contract: auth_sierra, casm: auth_casm });
-    authenticator = new StarknetContract(auth_sierra.abi, auth_response.deploy.contract_address, provider);
+    let authenticator = new StarknetContract(auth_sierra.abi, auth_response.deploy.contract_address, provider);
     console.log("Authenticator deployed: ", authenticator.address);
 
     // The same exact commit as `poseidon(0x1)`
